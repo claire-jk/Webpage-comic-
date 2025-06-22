@@ -1,0 +1,227 @@
+body {
+  margin: 0;
+  font-family: 'Cormorant Garamond', 'Zen Kurenaido', 'Arial', sans-serif;
+  color: #fff;
+  transition: background 0.5s ease-in-out;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+
+body.bg-0 { background: url('../image/song0tablet.jpg') no-repeat center center fixed; background-size: cover; }
+body.bg-1 { background: url('../image/song1tablet.jpg') no-repeat center center fixed; background-size: cover; }
+body.bg-2 { background: url('../image/song2tablet.jpg') no-repeat center center fixed; background-size: cover; }
+body.bg-3 { background: url('../image/song3tablet.jpg') no-repeat center center fixed; background-size: cover; }
+body.bg-4 { background: url('../image/song4tablet.jpg') no-repeat center center fixed; background-size: cover; }
+body.bg-5 { background: url('../image/song5tablet.jpg') no-repeat center center fixed; background-size: cover; }
+body.bg-6 { background: url('../image/song6tablet.jpg') no-repeat center center fixed; background-size: cover; }
+body.bg-7 { background: url('../image/song7tablet.jpg') no-repeat center center fixed; background-size: cover; }
+body.bg-8 { background: url('../image/song8tablet.webp') no-repeat center center fixed; background-size: cover; }
+body.bg-9 { background: url('../image/song9tablet.jpg') no-repeat center center fixed; background-size: cover; }
+body.bg-10 { background: url('../image/song10tablet.jpg') no-repeat center center fixed; background-size: cover; }
+
+.home-logo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 1000;
+}
+.home-logo img {
+  width: 100px;
+  transition: transform 0.3s ease;
+}
+.home-logo img:hover {
+  transform: scale(1.1);
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 90%;
+  z-index: 10;
+}
+
+.circle-video {
+  width: 250px;
+  height: 250px;
+  min-width: 250px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.6s, transform 0.6s;
+  opacity: 0;
+  transform: translateX(-50px);
+}
+.circle-video.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+.circle-video:hover {
+  transform: scale(1.1);
+}
+.circle-video iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  object-fit: cover;
+}
+
+.info-card {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.6s ease, transform 0.6s ease, visibility 0.6s;
+  background: rgba(5, 5, 5, 0.6);
+  backdrop-filter: blur(10px);
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 500px;
+  min-width: 250px;
+  color: #ffffff;
+  will-change: transform, opacity;
+  z-index: 11;
+}
+.info-card.active {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.6s ease forwards;
+}
+.animate-slide-in-up {
+  animation: slideInUp 0.6s ease forwards;
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(50px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.arrow {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s;
+}
+.arrow:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+.arrow.left { left: 20px; }
+.arrow.right { right: 20px; }
+
+.hamburger {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  font-size: 30px;
+  cursor: pointer;
+  z-index: 1001;
+  color: #000;
+}
+
+.nav-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  width: 200px;
+  height: 100%;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.3);
+  transform: translateX(100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
+  overflow-y: auto;
+}
+.nav-menu.show {
+  transform: translateX(0);
+}
+.nav-menu ul {
+  list-style: none;
+  padding: 60px 20px;
+}
+.nav-menu ul li {
+  margin: 20px 0;
+}
+.nav-menu ul li a {
+  text-decoration: none;
+  font-size: 18px;
+  color: #333;
+}
+
+.has-submenu .submenu {
+  display: none;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding-left: 15px;
+  list-style: none;
+  margin-top: 0;
+}
+.has-submenu.active .submenu {
+  max-height: 500px;
+  margin-top: 10px;
+}
+.has-submenu > a::after {
+  content: ' ▼';
+  font-size: 0.8em;
+  margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  .circle-video {
+    animation: slideInUp 0.6s ease forwards;
+    transform: translateY(50px);
+    width: 200px;
+    height: 200px;
+    min-width: 200px;
+  }
+
+  .info-card {
+    transform: translateY(50px);
+    max-width: 90vw;
+    margin: 0 auto;
+  }
+
+  body.bg-0 { background: url('../image/song0phone.jpg') no-repeat center center fixed; background-size: cover; }
+  body.bg-1 { background: url('../image/song1phone.jpg') no-repeat center center fixed; background-size: cover; }
+  body.bg-2 { background: url('../image/song2phone.jpeg') no-repeat center center fixed; background-size: cover; }
+  body.bg-3 { background: url('../image/song3phone.jpeg') no-repeat center center fixed; background-size: cover; }
+  body.bg-4 { background: url('../image/song4phone.png') no-repeat center center fixed; background-size: cover; }
+  body.bg-5 { background: url('../image/song5phone.jpeg') no-repeat center center fixed; background-size: cover; }
+  body.bg-6 { background: url('../image/song6phone.jpg') no-repeat center center fixed; background-size: cover; }
+  body.bg-7 { background: url('../image/song7phone.jpg') no-repeat center center fixed; background-size: cover; }
+  body.bg-8 { background: url('../image/song8phone.jpg') no-repeat center center fixed; background-size: cover; }
+  body.bg-9 { background: url('../image/song9phone.jpg') no-repeat center center fixed; background-size: cover; }
+  body.bg-10 { background: url('../image/song10phone.jpg') no-repeat center center fixed; background-size: cover; }
+
+  .arrow.left { left: 10px; }
+  .arrow.right { right: 10px; }
+}
